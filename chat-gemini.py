@@ -1,10 +1,13 @@
-from google import genai
-from google.genai import types
+import google.generativeai as genai
+import os
+from dotenv import load_dotenv
 
-# Only run this block for Gemini Developer API
-client = genai.Client(api_key='AIzaSyD6iHszrKKT31LZD-hYyLBqfIqE0sjwfjs')
+load_dotenv()
+api_key = os.getenv("GEMINI_API_KEY")
 
-response = client.models.generate_content(
-    model='gemini-2.0-flash-001', contents='Why is the sky blue?'
-)
+genai.configure(api_key=api_key)
+
+client = genai.GenerativeModel(model_name='gemini-2.0-flash-001')
+
+response = client.generate_content('Why is the sky blue?')
 print(response.text)
