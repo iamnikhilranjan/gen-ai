@@ -9,5 +9,5 @@ genai.configure(api_key=api_key)
 
 client = genai.GenerativeModel(model_name='gemini-2.0-flash-001')
 
-response = client.generate_content('Why is the sky blue?')
+response = client.generate_content('Why is the 5 + 4')
 print(response.text)
